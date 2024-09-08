@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { handleSpotifyLogin } from './spotifyAuth'; // Import the login function
 
 const PomodoroTimer = () => {
   // Initial timer durations
@@ -76,21 +77,11 @@ const PomodoroTimer = () => {
         </button>
         <button onClick={handleReset}>Reset</button>
       </div>
-    </div>
-  );
-};
-
-import { handleSpotifyLogin } from './spotifyAuth'; // Import the login function
-
-const PomodoroTimer = () => {
-  return (
-    <div>
-      {/* Your Pomodoro timer code */}
-      
-      <button onClick={handleSpotifyLogin}>Login with Spotify</button>
+      <div style={{ marginTop: '20px' }}>
+        <button onClick={handleSpotifyLogin}>Login with Spotify</button>
+      </div>
     </div>
   );
 };
 
 export default PomodoroTimer;
-
