@@ -1,27 +1,19 @@
 // src/pages/callback.js
 
 import React, { useEffect } from 'react';
+import { handleSpotifyCallback } from '../components/spotifyAuth'; // Import the function to handle the callback
 
-const Callback = () => {
+export default function Callback() {
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const accessToken = params.get('access_token');
-    
-    if (accessToken) {
-      // Store the access token securely, e.g., in local storage
-      localStorage.setItem('spotifyAccessToken', accessToken);
-      
-      // Redirect user to the main page or wherever needed
-      window.location.href = '/';
-    }
+    // This function handles the callback, extracts the token, and stores it
+    handleSpotifyCallback();
+    // Redirect the user to the Pomodoro Timer page after handling the callback
+    window.location.href = '/pomodoro';
   }, []);
 
   return (
     <div>
-      <h1>Processing...</h1>
+      <p>Logging in...</p>
     </div>
   );
-};
-
-export default Callback;
+}
