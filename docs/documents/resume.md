@@ -49,6 +49,12 @@
 
 ## Work Experience
 
+**Quilly, Berkeley, California**  
+*Software Engineer and Mobile App Development Intern*  
+*Aug 2024 - Present*  
+- Worked with massive data sets to optimize app functionality and user experience  
+- Contributed to product launching and algorithmic design for scalable solutions in a female-founded startup
+ 
 **Movie Recommending Website, Web Design**  
 *May 2024 - Present*  
 - Designed and coded a functional server capable of processing massive datasets optimally  
