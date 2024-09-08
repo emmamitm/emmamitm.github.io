@@ -1,7 +1,7 @@
 // src/pages/callback.js
 
 import React, { useEffect } from 'react';
-import { handleSpotifyCallback } from '../components/spotifyAuth'; // Import the function to handle the callback
+import { handleSpotifyCallback } from '../spotifyAuth'; // Import the function to handle the callback
 
 export default function Callback() {
   useEffect(() => {
