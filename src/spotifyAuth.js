@@ -1,14 +1,11 @@
-
-// spotifyAuth.js
-
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
-const clientId = '17dbe410e3354ecba1b79ebd3410e4eb';
-const redirectUri = 'http://localhost:3000/callback'; // Adjust this to your callback URL
-const scopes = 'user-read-private user-read-email playlist-read-private';
+const clientId = '17dbe410e3354ecba1b79ebd3410e4eb'; // Replace with your actual Spotify client ID
+const redirectUri = 'http://localhost:3000/callback'; // Adjust this for production
 
 export const handleSpotifyLogin = () => {
+  const scopes = 'user-read-private user-read-email playlist-read-private';
   const authUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}&show_dialog=true`;
   window.location.href = authUrl;
 };
