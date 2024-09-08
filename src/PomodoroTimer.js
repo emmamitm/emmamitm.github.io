@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { handleSpotifyLogin } from './spotifyAuth'; // Import the login function
+import { handleSpotifyLogin, getUserPlaylists } from './spotifyAuth'; // Import Spotify functions
 
 const PomodoroTimer = () => {
-  // Initial timer durations
   const WORK_TIME = 1500; // 25 minutes
   const SHORT_BREAK_TIME = 300; // 5 minutes
   const LONG_BREAK_TIME = 900; // 15 minutes
 
   const [timeLeft, setTimeLeft] = useState(WORK_TIME);
   const [isRunning, setIsRunning] = useState(false);
-  const [sessionType, setSessionType] = useState('Work'); // 'Work', 'Short Break', 'Long Break'
+  const [sessionType, setSessionType] = useState('Work');
+  const [playlists, setPlaylists] = useState([]);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const fetchedPlaylists = await getUserPlaylists();
+      setPlaylists(fetchedPlaylists || []);
+    };
+    fetchPlaylists();
+  }, []);
 
   useEffect(() => {
     let interval = null;
@@ -20,7 +28,7 @@ const PomodoroTimer = () => {
     } else if (timeLeft === 0) {
       if (sessionType === 'Work') {
         setSessionType('Short Break');
-        setTimeLeft(SHORT_BREAK_TIME); // Automatically switch to short break
+        setTimeLeft(SHORT_BREAK_TIME);
       } else if (sessionType === 'Short Break' || sessionType === 'Long Break') {
         setSessionType('Work');
         setTimeLeft(WORK_TIME);
@@ -29,31 +37,11 @@ const PomodoroTimer = () => {
     return () => clearInterval(interval);
   }, [isRunning, timeLeft, sessionType]);
 
-  const handleStartPause = () => {
-    setIsRunning(!isRunning);
-  };
+  const handleStartPause = () => setIsRunning(!isRunning);
 
   const handleReset = () => {
     setIsRunning(false);
     setTimeLeft(sessionType === 'Work' ? WORK_TIME : sessionType === 'Short Break' ? SHORT_BREAK_TIME : LONG_BREAK_TIME);
-  };
-
-  const handleWorkSession = () => {
-    setIsRunning(false);
-    setSessionType('Work');
-    setTimeLeft(WORK_TIME);
-  };
-
-  const handleShortBreak = () => {
-    setIsRunning(false);
-    setSessionType('Short Break');
-    setTimeLeft(SHORT_BREAK_TIME);
-  };
-
-  const handleLongBreak = () => {
-    setIsRunning(false);
-    setSessionType('Long Break');
-    setTimeLeft(LONG_BREAK_TIME);
   };
 
   const formatTime = (seconds) => {
@@ -67,11 +55,6 @@ const PomodoroTimer = () => {
       <h2>{sessionType} Session</h2>
       <h1 style={{ fontSize: '48px' }}>{formatTime(timeLeft)}</h1>
       <div>
-        <button onClick={handleWorkSession} style={{ margin: '5px' }}>Work Timer</button>
-        <button onClick={handleShortBreak} style={{ margin: '5px' }}>Short Break</button>
-        <button onClick={handleLongBreak} style={{ margin: '5px' }}>Long Break</button>
-      </div>
-      <div style={{ marginTop: '20px' }}>
         <button onClick={handleStartPause} style={{ marginRight: '10px' }}>
           {isRunning ? 'Pause' : 'Start'}
         </button>
@@ -79,6 +62,19 @@ const PomodoroTimer = () => {
       </div>
       <div style={{ marginTop: '20px' }}>
         <button onClick={handleSpotifyLogin}>Login with Spotify</button>
+      </div>
+      <div style={{ marginTop: '20px' }}>
+        <h3>Your Playlists:</h3>
+        {playlists.length > 0 ? (
+          playlists.map((playlist) => (
+            <div key={playlist.id}>
+              <img src={playlist.images[0]?.url} alt={playlist.name} width="50" height="50" />
+              <p>{playlist.name}</p>
+            </div>
+          ))
+        ) : (
+          <p>No playlists found or not logged in.</p>
+        )}
       </div>
     </div>
   );
