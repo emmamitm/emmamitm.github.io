@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import PomodoroTimer from '../components/PomodoroTimer'; // Import Pomodoro Timer
+import PomodoroTimer from '../PomodoroTimer'; // Import Pomodoro Timer
 
 export default function PomodoroPage() {
   return (
