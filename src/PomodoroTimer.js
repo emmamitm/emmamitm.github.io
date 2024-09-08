@@ -80,4 +80,17 @@ const PomodoroTimer = () => {
   );
 };
 
+import { handleSpotifyLogin } from './spotifyAuth'; // Import the login function
+
+const PomodoroTimer = () => {
+  return (
+    <div>
+      {/* Your Pomodoro timer code */}
+      
+      <button onClick={handleSpotifyLogin}>Login with Spotify</button>
+    </div>
+  );
+};
+
 export default PomodoroTimer;
+
