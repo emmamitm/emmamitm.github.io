@@ -13,9 +13,9 @@
 
 **University of Florida, Gainesville, Florida**  
 *Expected Graduation:* May 2025  
-**Dual Bachelor of Science**  
-**Majors:** Computer Science, Mechanical Engineering  
-**GPA:** 3.77/4.0  
+**Bachelor of Science**  
+**Major:** Computer Science
+**GPA:** 3.74/4.0  
 **Dean’s List:** Fall 2021, Fall 2022, Spring 2023, Summer 2023, Summer 2024
 
 ### Relevant Coursework
