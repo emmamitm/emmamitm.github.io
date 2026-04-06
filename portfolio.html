@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma Mitchell — AI & Product Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --surface: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede6;
+    --muted: #888880;
+    --accent: #ff2b54;
+    --accent2: #ff6b35;
+    --teal: #00d4aa;
+    --gold: #f5c842;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+    position: relative;
+    max-width: 100%;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--teal);
+  }
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted);
+    max-width: 540px;
+    margin-top: 1.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 0.35rem;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border: 0.5px solid var(--border2);
+    border-radius: 2px;
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+  /* BG grid */
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  h2.section-title em { font-style: italic; color: var(--teal); }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4rem;
+    height: 0.5px;
+    background: var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+  }
+  .project-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:hover { background: var(--bg3); }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .project-tag.ai { color: var(--teal); }
+  .project-tag.trading { color: var(--gold); }
+  h3.project-title {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .project-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+  }
+  .metric {
+    border-left: 2px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  .metric.teal { border-color: var(--teal); }
+  .metric.gold { border-color: var(--gold); }
+  .metric-val {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .metric-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .tech-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 0.3rem 0.7rem;
+    border: 0.5px solid var(--border2);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    border-radius: 1px;
+  }
+  .project-arch {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+  }
+  .arch-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .arch-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .arch-step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+  }
+  .arch-node {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    padding: 0.4rem 0.8rem;
+    flex-shrink: 0;
+    min-width: 160px;
+    text-align: center;
+  }
+  .arch-node.highlight {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+  .arch-arrow {
+    font-size: 16px;
+    color: var(--border2);
+    transform: rotate(90deg);
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding-left: 80px;
+  }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 13px;
+    color: var(--teal);
+    text-decoration: none;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    transition: gap 0.2s;
+  }
+  .project-link:hover { gap: 0.75rem; }
+
+  /* More projects grid */
+  .more-projects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    margin-top: 1.5px;
+  }
+  .mini-project {
+    background: var(--bg);
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+  .mini-project:hover { background: var(--bg3); }
+  .mini-project h4 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .mini-project p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .lang-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  /* EXPERIENCE */
+  .experience-list { display: flex; flex-direction: column; gap: 0; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 0.5px solid var(--border); }
+  .exp-meta {}
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.03em;
+  }
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 0.4rem;
+  }
+  .exp-location {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  .exp-content {}
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.65;
+  }
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border2);
+    font-size: 12px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+  }
+  .skill-group {
+    background: var(--bg);
+    padding: 2rem;
+  }
+  .skill-group-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .skill-chip {
+    font-size: 12px;
+    color: var(--text);
+    background: var(--surface);
+    padding: 0.3rem 0.65rem;
+    border-radius: 1px;
+    border: 0.5px solid var(--border);
+  }
+
+  /* CONTACT */
+  #contact {
+    border-top: 0.5px solid var(--border);
+    padding-top: 6rem;
+  }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-copy h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-copy h2 em { font-style: italic; color: var(--accent); }
+  .contact-copy p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 360px;
+    line-height: 1.75;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 0.5px solid var(--border);
+    margin-top: 1rem;
+  }
+  .contact-link-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-link-item:last-child { border-bottom: none; }
+  .contact-link-item:hover { background: var(--bg3); }
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .contact-link-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .contact-link-arrow { color: var(--muted); font-size: 14px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+  .footer-name {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+  .footer-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .footer-note span { color: var(--accent); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+  .delay-5 { animation-delay: 0.65s; }
+
+  /* EDUCATION BADGE */
+  .edu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg3);
+    border: 0.5px solid var(--border2);
+    padding: 1rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .edu-badge-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .edu-badge-text .school {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .edu-badge-text .degree {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .edu-honors {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.4rem;
+  }
+  .honor-chip {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 0.15rem 0.5rem;
+    background: rgba(245,200,66,0.1);
+    border: 0.5px solid rgba(245,200,66,0.3);
+    color: var(--gold);
+    letter-spacing: 0.06em;
+  }
+
+  /* VIDEO LINK */
+  .demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    margin-top: 0.75rem;
+    text-decoration: none;
+    border: 0.5px solid rgba(255,43,84,0.3);
+    padding: 0.35rem 0.75rem;
+    transition: background 0.2s;
+  }
+  .demo-badge:hover { background: rgba(255,43,84,0.08); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero-inner { padding: 0 1.5rem; }
+    h1.hero-name { font-size: 3rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .more-projects { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; padding: 1.5rem; text-align: center; }
+    .divider { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">EM_PORTFOLIO</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/emmamitm" target="_blank" rel="noopener">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-label fade-in">AI &amp; Software Engineer · Product Builder · UF CS Graduate</div>
+    <h1 class="hero-name fade-in delay-1">Emma<br><em>Mitchell</em></h1>
+    <p class="hero-tagline fade-in delay-2">I build AI-powered products and scalable software systems that solve real problems — combining LLM architecture, full-stack engineering, and product thinking to ship things that matter.</p>
+    <div class="hero-stats fade-in delay-3">
+      <div class="stat-item">
+        <div class="stat-num">10<span>k+</span></div>
+        <div class="stat-label">Student queries processed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">90<span>%+</span></div>
+        <div class="stat-label">Response accuracy (RAG)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5<span>k+</span></div>
+        <div class="stat-label">Stock symbols processed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">F500</div>
+        <div class="stat-label">Enterprise clients (EY)</div>
+      </div>
+    </div>
+    <div class="hero-ctas fade-in delay-4">
+      <a class="btn-primary" href="#projects">View Projects</a>
+      <a class="btn-ghost" href="#contact">Get in Touch</a>
+      <a class="btn-ghost" href="https://emmamitm.github.io/docs/category/projects" target="_blank" rel="noopener">Docs Site ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Featured <em>Projects</em></h2>
+  </div>
+
+  <div class="projects-grid">
+    <!-- FEATURED: GatorNet -->
+    <div class="project-card featured">
+      <div>
+        <div class="project-tag ai">AI · RAG · LLM</div>
+        <h3 class="project-title">GatorNet AI — Campus Assistant</h3>
+        <p class="project-desc">LLM-powered university assistant that helps students navigate academic resources, answer policy questions, and automate common campus queries. Built end-to-end with retrieval-augmented generation, vector search, and a full document ingestion pipeline.</p>
+        <div class="project-metrics">
+          <div class="metric teal">
+            <div class="metric-val">10k+</div>
+            <div class="metric-label">Queries processed</div>
+          </div>
+          <div class="metric teal">
+            <div class="metric-val">90%+</div>
+            <div class="metric-label">Response accuracy</div>
+          </div>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">OpenAI APIs</span>
+          <span class="tech-pill">Vector DB</span>
+          <span class="tech-pill">RAG</span>
+          <span class="tech-pill">Embeddings</span>
+          <span class="tech-pill">Semantic Search</span>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:1.25rem;">
+          <a class="project-link" href="https://github.com/emmamitm/GatorNet" target="_blank" rel="noopener">GitHub Repo →</a>
+          <a class="demo-badge" href="https://youtu.be/n7bVDBZMXRs" target="_blank" rel="noopener">▶ Live Demo</a>
+        </div>
+      </div>
+      <div class="project-arch">
+        <div class="arch-title">System Architecture</div>
+        <div class="arch-flow">
+          <div class="arch-step"><div class="arch-node">User Query</div></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><div class="arch-node">Embedding Generation</div></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><div class="arch-node highlight">Vector DB Retrieval</div></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><div class="arch-node highlight">Context Injection</div></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><div class="arch-node">LLM Response</div></div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step"><div class="arch-node">Final Answer</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trading Platform -->
+    <div class="project-card">
+      <div class="project-tag trading">Full-Stack · Finance · Data</div>
+      <h3 class="project-title">Algorithmic Trading Platform</h3>
+      <p class="project-desc">Full-stack trading platform with real-time market data integration, interactive analytics dashboards, and a custom stock filtering engine. Processes thousands of symbols with dynamic visualization.</p>
+      <div class="project-metrics">
+        <div class="metric gold">
+          <div class="metric-val">5k+</div>
+          <div class="metric-label">Stock symbols</div>
+        </div>
+      </div>
+      <div class="tech-stack">
+        <span class="tech-pill">React</span>
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">REST APIs</span>
+        <span class="tech-pill">Market Data APIs</span>
+      </div>
+      <a class="project-link" href="https://github.com/emmamitm/StockTradingOpenSource" target="_blank" rel="noopener">GitHub Repo →</a>
+    </div>
+
+    <!-- Movie Suggesting -->
+    <div class="project-card">
+      <div class="project-tag">Recommendation · Python</div>
+      <h3 class="project-title">Movie Suggesting Website</h3>
+      <p class="project-desc">Web application that recommends films based on user preferences using data-driven filtering and content matching. Built with Python as the core engine.</p>
+      <div class="tech-stack">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Web</span>
+        <span class="tech-pill">Recommendation Engine</span>
+      </div>
+      <a class="project-link" href="https://github.com/emmamitm/MovieSuggestingWebsite" target="_blank" rel="noopener">GitHub Repo →</a>
+    </div>
+  </div>
+
+  <!-- More Projects -->
+  <div class="more-projects">
+    <div class="mini-project">
+      <h4>AVL Tree</h4>
+      <p>Self-balancing binary search tree implementation with full rotation logic and height-balanced insertions and deletions.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+    <div class="mini-project">
+      <h4>Cache Simulator</h4>
+      <p>Simulates CPU cache behavior using unordered maps, implementing set-associative cache lookup with configurable policies.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+    <div class="mini-project">
+      <h4>Image Processing Tool</h4>
+      <p>Filter removal and comparison tool for images. Applies and compares various transformations with side-by-side visual diff.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+    <div class="mini-project">
+      <h4>Minesweeper</h4>
+      <p>Classic Minesweeper implemented from scratch with recursive cell reveal, mine generation, and win/loss state management.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+    <div class="mini-project">
+      <h4>LLIQR — Linked List IQR</h4>
+      <p>Computes interquartile range over a linked list structure. Demonstrates statistical reasoning on non-contiguous memory.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+    <div class="mini-project">
+      <h4>USA State Data Interpreter</h4>
+      <p>Reads and interprets CSV state demographic data — population, per capita income, median household income — with random number generation features.</p>
+      <div class="lang-tag">C++</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Work <em>Experience</em></h2>
+  </div>
+
+  <div class="edu-badge">
+    <div class="edu-badge-icon">🎓</div>
+    <div class="edu-badge-text">
+      <div class="school">University of Florida — B.S. Computer Science · AI Certification</div>
+      <div class="degree">Gainesville, FL</div>
+      <div class="edu-honors">
+        <span class="honor-chip">Dean's List ×6</span>
+        <span class="honor-chip">Fall 2021</span>
+        <span class="honor-chip">Fall 2022</span>
+        <span class="honor-chip">Spring 2023</span>
+        <span class="honor-chip">Summer 2023</span>
+        <span class="honor-chip">Summer 2024</span>
+        <span class="honor-chip">Fall 2024</span>
+        <span class="honor-chip">Spring 2025</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="experience-list">
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Ernst &amp; Young (EY)</div>
+        <div class="exp-period">Jul 2025 — Present</div>
+        <div class="exp-location">Dallas, Texas</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Business Tax Services Technology STEM Analyst</div>
+        <ul class="exp-bullets">
+          <li>Architect scalable enterprise software solutions for Fortune 500 clients by translating complex tax compliance requirements (Section 174, R&amp;D credits) into automated technical workflows and cloud-based systems</li>
+          <li>Evaluate and design cloud architecture strategies (AWS, Azure) for regulatory-compliant platforms, performing gap analyses and delivering implementation roadmaps</li>
+          <li>Partner cross-functionally with engineering, legal, and finance teams to scope requirements, prototype solutions, and deploy automation tools</li>
+          <li>Present data-driven technical recommendations to executive stakeholders, influencing enterprise technology adoption and system architecture decisions</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Quilly (Early-Stage Startup)</div>
+        <div class="exp-period">Aug — Dec 2024</div>
+        <div class="exp-location">Berkeley, CA</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Software Engineering Intern</div>
+        <ul class="exp-bullets">
+          <li>Built business engineering solutions in an early-stage startup environment, integrating third-party APIs and cloud infrastructure to support scalable product functionality</li>
+          <li>Partnered with founders and cross-functional stakeholders to translate business needs into technical implementations</li>
+          <li>Delivered technical presentations explaining system architecture that influenced product and growth strategy</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">Ringle Tutoring</div>
+        <div class="exp-period">Jan — Sep 2022</div>
+        <div class="exp-location">South Korea (Remote)</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Educational Specialist</div>
+        <ul class="exp-bullets">
+          <li>Delivered personalized educational solutions to 50+ international clients, maintaining a 4.5-star satisfaction rating through consultative needs assessment and adaptive lesson design</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-company">WICSE @ UF</div>
+        <div class="exp-period">Aug 2024 — Present</div>
+        <div class="exp-location">Gainesville, FL</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Mentor — Women in CS &amp; Engineering</div>
+        <ul class="exp-bullets">
+          <li>Mentoring fellow female engineers, providing guidance on technical topics and career development in the computing field</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Technical <em>Skills</em></h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">AI &amp; Machine Learning</div>
+      <div class="skill-items">
+        <span class="skill-chip">LLM Applications</span>
+        <span class="skill-chip">RAG</span>
+        <span class="skill-chip">Vector Databases</span>
+        <span class="skill-chip">Embeddings</span>
+        <span class="skill-chip">Model Integration</span>
+        <span class="skill-chip">Semantic Search</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Cloud &amp; Infrastructure</div>
+      <div class="skill-items">
+        <span class="skill-chip">AWS</span>
+        <span class="skill-chip">Azure</span>
+        <span class="skill-chip">Google Cloud</span>
+        <span class="skill-chip">Docker</span>
+        <span class="skill-chip">CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Programming</div>
+      <div class="skill-items">
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">React</span>
+        <span class="skill-chip">Node.js</span>
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">C++</span>
+        <span class="skill-chip">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Data &amp; Analytics</div>
+      <div class="skill-items">
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">NoSQL</span>
+        <span class="skill-chip">Snowflake</span>
+        <span class="skill-chip">ETL Pipelines</span>
+        <span class="skill-chip">Tableau</span>
+        <span class="skill-chip">Power BI</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Systems &amp; Architecture</div>
+      <div class="skill-items">
+        <span class="skill-chip">Microservices</span>
+        <span class="skill-chip">API Design</span>
+        <span class="skill-chip">System Design</span>
+        <span class="skill-chip">Distributed Systems</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Product &amp; Strategy</div>
+      <div class="skill-items">
+        <span class="skill-chip">Agile / Scrum</span>
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Technical Consulting</span>
+        <span class="skill-chip">ROI Analysis</span>
+        <span class="skill-chip">Stakeholder Comms</span>
+        <span class="skill-chip">Requirements Gathering</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-copy">
+      <h2>Let's build<br><em>something</em>.</h2>
+      <p>Currently at EY working on enterprise cloud systems. Open to conversations about product, AI applications, and the intersection of both. Based in the US.</p>
+    </div>
+    <div>
+      <div class="contact-links">
+        <a class="contact-link-item" href="mailto:emmamit.co@gmail.com">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-val">emmamit.co@gmail.com</span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a class="contact-link-item" href="tel:4804279524">
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-val">480.427.9524</span>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a class="contact-link-item" href="https://www.linkedin.com/in/emma-mitchell-8313b0267" target="_blank" rel="noopener">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-val">emma-mitchell-8313b0267</span>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a class="contact-link-item" href="https://github.com/emmamitm" target="_blank" rel="noopener">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-val">github.com/emmamitm</span>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a class="contact-link-item" href="https://emmamitm.github.io" target="_blank" rel="noopener">
+          <span class="contact-link-label">Docs Site</span>
+          <span class="contact-link-val">emmamitm.github.io</span>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+        <a class="contact-link-item" href="https://youtu.be/n7bVDBZMXRs" target="_blank" rel="noopener">
+          <span class="contact-link-label">Demo Video</span>
+          <span class="contact-link-val">GatorNet AI — Live Demo</span>
+          <span class="contact-link-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">EMMA MITCHELL — PORTFOLIO 2025</div>
+  <div class="footer-note">Built for <span>TikTok PM Graduate</span> Application · San Jose</div>
+</footer>
+
+</body>
+</html>
